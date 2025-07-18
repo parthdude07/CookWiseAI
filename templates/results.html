@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Recommended Recipes</title></head>
+<body>
+    <h1>Top Recommended Recipes</h1>
+    {% for recipe in recipes %}
+        <h2>{{ recipe.TranslatedRecipeName }}</h2>
+        <img src="{{ recipe['image-url'] }}" width="200px"><br>
+        <p><b>Instructions:</b> {{ recipe.TranslatedInstructions }}</p>
+        <hr>
+    {% endfor %}
+    <a href="/">← Back</a>
+</body>
+</html>

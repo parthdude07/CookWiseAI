@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head><title>CookWiseAI</title></head>
+<body>
+    <h1>CookWiseAI - Recipe Recommender</h1>
+    <form method="post" action="/recommend">
+        <h3>Select Ingredients:</h3>
+        {% for ing in ingredients %}
+            <label><input type="checkbox" name="ingredients" value="{{ ing }}"> {{ ing }}</label><br>
+        {% endfor %}
+
+        <h3>Select Cuisine:</h3>
+        <select name="cuisine">
+            <option value="Any">Any</option>
+            {% for c in cuisines %}
+                <option value="{{ c }}">{{ c }}</option>
+            {% endfor %}
+        </select>
+
+        <h3>Select Time:</h3>
+        <select name="time">
+            <option value="Any">Any</option>
+            {% for t in times %}
+                <option value="{{ t }}">{{ t }}</option>
+            {% endfor %}
+        </select>
+
+        <h3>Select Protein Level:</h3>
+        <select name="protein">
+            <option value="Any">Any</option>
+            {% for p in proteins %}
+                <option value="{{ p }}">{{ p }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+        <input type="submit" value="Get Recipes">
+    </form>
+</body>
+</html>
