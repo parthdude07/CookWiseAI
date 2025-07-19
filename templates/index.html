@@ -1,40 +1,189 @@
 <!DOCTYPE html>
-<html>
-<head><title>CookWiseAI</title></head>
-<body>
-    <h1>CookWiseAI - Recipe Recommender</h1>
-    <form method="post" action="/recommend">
-        <h3>Select Ingredients:</h3>
-        {% for ing in ingredients %}
-            <label><input type="checkbox" name="ingredients" value="{{ ing }}"> {{ ing }}</label><br>
-        {% endfor %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CookWiseAI - Recipe Recommender</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <h3>Select Cuisine:</h3>
-        <select name="cuisine">
-            <option value="Any">Any</option>
-            {% for c in cuisines %}
-                <option value="{{ c }}">{{ c }}</option>
-            {% endfor %}
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hover-glow:hover {
+      box-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
+      transition: 0.3s ease;
+    }
+  </style>
+ 
+
+</head>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("recipe-form");
+    
+    form.addEventListener("submit", function (e) {
+      const checkboxes = document.querySelectorAll("input[name='ingredients']:checked");
+      
+      if (checkboxes.length === 0) {
+        e.preventDefault(); // Block form submission
+        alert("⚠️ Please select at least one ingredient before continuing.");
+      }
+    });
+  });
+</script>
+
+
+<!-- Welcome Overlay -->
+<!--  it's hidden by default -->
+<div id="welcomeOverlay" class="hidden fixed inset-0 bg-orange-100 z-50 flex items-center justify-center p-4">
+
+  <div class="bg-white p-4 rounded-xl shadow-xl w-full max-w-md text-center space-y-3 fade-in">
+    <h2 class="text-lg sm:text-xl font-bold text-orange-600">
+      Ever Craved Something Delicious But Didn't Know What to Cook?
+    </h2>
+
+    <p class="text-gray-700 text-xs sm:text-sm leading-snug">
+      We’ve all been there.<br>
+
+      You're home, hungry, bored — and craving something tasty. You turn to your mom and say:<br>
+      <span class="italic text-orange-500">"Maa, make something delicious!"</span><br>
+
+      And she replies:<br>
+      <span class="italic text-orange-500">"Tum hi batao beta, kya banayein?"</span><br>
+
+      But you're blank.<br>
+
+      You don’t know what, but you want something — something that <b>fits your taste</b>, your <b>available ingredients</b>, and the <b>little time</b> you have. Whether you're in the mood for spicy Punjabi food, something quick and healthy, or a low-sugar snack — this system has your back.
+    </p>
+
+    <button onclick="closeWelcome()" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-1.5 text-sm rounded-lg transition">
+      Let’s Get Cooking!
+    </button>
+  </div>
+</div>
+
+
+<body class="bg-gradient-to-br from-orange-50 to-yellow-100 min-h-screen p-6">
+  {% include 'navbar.html' %}
+
+  <div class="max-w-3xl mx-auto bg-white p-6 rounded-2xl shadow-2xl fade-in">
+  <h1 class="text-2xl sm:text-3xl font-bold text-orange-600 mb-2 text-center">🍽️ CookWiseAI</h1>
+  <p class="text-center text-gray-600 mb-4 text-sm sm:text-base">Smart Recipe Recommender based on what you have!</p>
+
+  <!-- Why This Section -->
+  <div class="bg-orange-50 rounded-xl p-3 sm:p-4 mt-4 shadow-sm text-left">
+    <h3 class="text-base sm:text-lg font-semibold text-orange-600 font-serif mb-1">🎯 Why This?</h3>
+    <p class="text-gray-700 text-sm sm:text-[15px] leading-snug">
+      Because sometimes…<br>
+      You don’t want to scroll endlessly through YouTube or blogs.<br>
+      You do want something fast, relevant, and tasty — based on what you already have.
+    </p>
+  </div>
+
+
+
+    <form id="recipe-form" method="post" action="/recommend" class="space-y-6">
+      
+      <!-- Ingredients -->
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700 mb-2">🧂 Select Ingredients:</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-2 max-h-64 overflow-y-auto border border-orange-200 rounded p-3 bg-orange-50">
+          {% for ing in ingredients %}
+            <label class="flex items-center space-x-2">
+              <input type="checkbox" name="ingredients" value="{{ ing }}" class="accent-orange-500">
+              <span>{{ ing }}</span>
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Cuisine -->
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700 mb-2">🌍 Select Cuisine:</h3>
+        <select name="cuisine" class="w-full border border-orange-200 rounded p-2 hover-glow focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50">
+          <option value="Any">Any</option>
+          {% for c in cuisines %}
+            <option value="{{ c }}">{{ c }}</option>
+          {% endfor %}
         </select>
+      </div>
 
-        <h3>Select Time:</h3>
-        <select name="time">
-            <option value="Any">Any</option>
-            {% for t in times %}
-                <option value="{{ t }}">{{ t }}</option>
-            {% endfor %}
+      <!-- Time -->
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700 mb-2">⏱️ Select Time:</h3>
+        <select name="time" class="w-full border border-orange-200 rounded p-2 hover-glow focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50">
+          <option value="Any">Any</option>
+          {% for t in times %}
+            <option value="{{ t }}">{{ t }}</option>
+          {% endfor %}
         </select>
+      </div>
 
-        <h3>Select Protein Level:</h3>
-        <select name="protein">
-            <option value="Any">Any</option>
-            {% for p in proteins %}
-                <option value="{{ p }}">{{ p }}</option>
-            {% endfor %}
+      <!-- Protein -->
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700 mb-2">💪 Select Protein Level:</h3>
+        <select name="protein" class="w-full border border-orange-200 rounded p-2 hover-glow focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50">
+          <option value="Any">Any</option>
+          {% for p in proteins %}
+            <option value="{{ p }}">{{ p }}</option>
+          {% endfor %}
         </select>
+      </div>
 
-        <br><br>
-        <input type="submit" value="Get Recipes">
+      <!-- Tags -->
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700 mb-2">🏷️ Tags:</h3>
+        <div class="flex flex-wrap gap-3">
+          <button type="button" class="px-4 py-2 rounded-full bg-orange-100 text-orange-700 border border-orange-300 hover:bg-orange-200 transition">High Fibre</button>
+          <button type="button" class="px-4 py-2 rounded-full bg-orange-100 text-orange-700 border border-orange-300 hover:bg-orange-200 transition">Low Sugar</button>
+          <button type="button" class="px-4 py-2 rounded-full bg-orange-100 text-orange-700 border border-orange-300 hover:bg-orange-200 transition">Low Calorie</button>
+          <button type="button" class="px-4 py-2 rounded-full bg-orange-100 text-orange-700 border border-orange-300 hover:bg-orange-200 transition">Spicy</button>
+        </div>
+        <p class="text-xs text-gray-500 mt-1">(*logic will be implemented later.)</p>
+      </div>
+
+      <!-- Submit -->
+      <div class="text-center pt-4">
+        <input type="submit" value="Get Recipes" class="bg-orange-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-orange-600 transition duration-300 shadow-lg hover:shadow-xl cursor-pointer">
+      </div>
+
     </form>
+  </div>
+ <script>
+  // Show overlay only once per browser tab session
+  document.addEventListener("DOMContentLoaded", function () {
+    const alreadyShown = sessionStorage.getItem("welcomeShown");
+
+    if (!alreadyShown) {
+      document.getElementById("welcomeOverlay").classList.remove("hidden");
+      sessionStorage.setItem("welcomeShown", "true");
+    }
+  });
+
+  function closeWelcome() {
+    const overlay = document.getElementById("welcomeOverlay");
+    overlay.classList.add("opacity-0");
+
+    setTimeout(() => {
+      overlay.classList.add("hidden");
+    }, 500); // Smooth fade-out
+  }
+</script>
+
+
+
 </body>
 </html>

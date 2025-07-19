@@ -27,7 +27,15 @@ def get_protein_level(ingredients):
 
 @app.route('/')
 def index():
-    top_ingredients = ['onion', 'tomato', 'green chilli', 'ginger', 'garlic', 'potato', 'rice', 'carrot', 'paneer', 'cabbage']
+    #most common top 50 ingredients
+    top_ingredients =[
+    "onion", "tomato",  "potato", "egg", "cabbage", "green peas", "besan","green chilli",  "coriander leaves", "rice",
+    "coconut", "carrot", "spinach", "green beans", "paneer", "curd", "flour", "wheat flour",
+    "mint leaves", "lemon", "moong dal", "urad dal", "methi leaves", "bread", "milk powder", "maida",
+    "boiled potato", "semolina", "poha", "dal", "soy chunks", "tamarind pulp", "raw banana", "parboiled rice",
+    "coconut milk", "gram flour", "beetroot", "puffed rice", "cucumber", "boiled rice", "mango", "oats", "jaggery",
+    "brinjal", "rice flour", "cooked rice", "fenugreek leaves", "apple","ginger", "garlic"
+]
     return render_template("index.html", cuisines=unique_cuisines, times=time_filters, proteins=protein_levels, ingredients=top_ingredients)
 
 
@@ -75,13 +83,14 @@ def recommend():
 
     top_results = (
         matches.sort_values(by='score', ascending=False)
-               .head(5)
-               [['TranslatedRecipeName', 'TranslatedInstructions', 'image-url']]
-               .to_dict(orient='records')
+               .head(6).to_dict(orient='records')
     )
 
     return render_template("results.html", recipes=top_results)
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,14 +1,94 @@
 <!DOCTYPE html>
-<html>
-<head><title>Recommended Recipes</title></head>
-<body>
-    <h1>Top Recommended Recipes</h1>
-    {% for recipe in recipes %}
-        <h2>{{ recipe.TranslatedRecipeName }}</h2>
-        <img src="{{ recipe['image-url'] }}" width="200px"><br>
-        <p><b>Instructions:</b> {{ recipe.TranslatedInstructions }}</p>
-        <hr>
-    {% endfor %}
-    <a href="/">← Back</a>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recommended Recipes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="bg-gradient-to-br from-yellow-50 to-orange-100 min-h-screen p-6">
+  {% include 'navbar.html' %}
+
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-4xl font-bold text-orange-600 mb-3 text-center">🍽️ Top Recommended Recipes</h1>
+    <p class="text-center text-sm italic text-gray-500">
+  From <span class="text-orange-600 font-semibold">“Maa, kya banayein?”🤔</span> to 
+  <span class="text-green-600 font-semibold">“Bas yeh hi chahiye tha!” 😍🍽️</span>
+</p>
+   <br>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for recipe in recipes %}
+      <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 flex flex-col overflow-hidden h-full">
+
+        <!-- Image -->
+        <img src="{{ recipe['image-url'] }}"
+             onerror="this.src='/static/default.jpg'"
+             alt="Recipe Image"
+             class="w-full h-52 object-cover" />
+
+        <!-- Content -->
+        <div class="flex flex-col justify-between p-5 space-y-4 h-full">
+          <!-- Title -->
+          <h2 class="text-xl font-semibold text-gray-800 leading-tight">{{ recipe.TranslatedRecipeName }}</h2>
+
+          <!-- Ingredients -->
+          <p class="text-gray-600 text-sm">
+            <span class="font-semibold">Ingredients ({{ recipe['Ingredient-count'] }}):</span>
+            {{ recipe['Cleaned-Ingredients'] }}
+          </p>
+
+          <!-- Time & Cuisine -->
+          <div class="flex justify-between items-center text-sm text-gray-700">
+            <span><strong>Time:</strong> {{ recipe.TotalTimeInMins }} mins</span>
+            <span><strong>Cuisine:</strong> {{ recipe.Cuisine }}</span>
+          </div>
+
+          <!-- Instructions -->
+          <div class="text-sm text-gray-700">
+            <strong>Steps:</strong>
+            <ul class="list-disc list-inside mt-1 max-h-40 overflow-auto space-y-1">
+              {% for step in recipe.TranslatedInstructions.split('.') if step.strip() %}
+                <li>{{ step.strip() }}.</li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <!-- View Full Recipe Button -->
+          <a href="{{ recipe.URL }}" target="_blank" class="mt-4">
+            <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-lg transition duration-200 shadow-md">
+              View Full Recipe
+            </button>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-12">
+      <a href="/" class="inline-block bg-orange-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-orange-600 transition duration-300 shadow-lg hover:shadow-xl">
+        ← Back to Home
+      </a>
+    </div>
+  </div>
 </body>
 </html>

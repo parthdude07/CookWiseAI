@@ -1,0 +1,90 @@
+<!-- templates/about.html -->
+<!DOCTYPE html>
+<html>
+<head><title>About - CookWiseAI</title></head>
+<body>
+    {% include 'navbar.html' %}
+    <!-- About Section -->
+<section class="max-w-4xl mx-auto px-6 py-12 space-y-10 fade-in text-gray-800">
+  <div>
+    <h2 class="text-2xl sm:text-3xl font-bold text-orange-600 mb-3">✅ What is CookWiseAI?</h2>
+    <p class="text-sm sm:text-base leading-relaxed">
+      CookWiseAI is a smart, AI-powered recipe recommendation system that suggests dishes based on what <em>you</em> have at home — your ingredients, time, cuisine preference, and even health goals like low sugar or high protein. 
+      It's designed to be your personal kitchen buddy when you're stuck wondering <strong>“What should I cook today?”</strong>
+    </p>
+  </div>
+
+  <div>
+    <h2 class="text-2xl sm:text-3xl font-bold text-orange-600 mb-3">🛠️ Why Did We Build It?</h2>
+    <p class="text-sm sm:text-base leading-relaxed">
+      We’ve all faced the dreaded food dilemma: You’re hungry, bored, and staring at the kitchen... but have no idea what to make. You ask your mom for help, and she throws the question back at you — 
+      <em>“Tum hi batao beta, kya banayein?”</em><br><br>
+      That moment inspired us. What if we could use tech to solve this everyday struggle?  
+      So we built CookWiseAI — to take the pressure off, and put the <strong>fun</strong> back into cooking.
+    </p>
+  </div>
+
+  <div>
+    <h2 class="text-2xl sm:text-3xl font-bold text-orange-600 mb-3">🚨 What Problem Does It Solve?</h2>
+    <ul class="list-disc list-inside text-sm sm:text-base leading-relaxed space-y-1 pl-2">
+      <li>No more endlessly scrolling through blogs or YouTube for “easy recipes”</li>
+      <li>No more guesswork — get tailored suggestions based on what’s available</li>
+      <li>Saves time by filtering recipes by ingredients, cuisine, diet, and time</li>
+      <li>Helps reduce food waste by using what’s already in your kitchen</li>
+    </ul>
+  </div>
+
+  <div>
+    <h2 class="text-2xl sm:text-3xl font-bold text-orange-600 mb-3">⚙️ How It Works / What Makes It Different</h2>
+    <p class="text-sm sm:text-base leading-relaxed">
+      You simply input your available ingredients, choose cuisine, cooking time, and optionally select dietary tags like <strong>low sugar</strong> or <strong>high protein</strong>.  
+      CookWiseAI uses a smart ML model (TF-IDF + KNN) to match your preferences with the best-fit recipes from our dataset.<br><br>
+      Unlike other platforms, this works locally and delivers <strong>fast, relevant</strong> suggestions — no login, no fluff, no full pantry required.
+    </p>
+  </div>
+</section>
+<!-- Footer for About Section -->
+<footer class="bg-orange-50 text-gray-700 py-6 px-4 mt-16 border-t border-orange-200">
+  <div class="max-w-4xl mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
+    
+    <!-- About Developer -->
+    <div>
+      <h4 class="text-base font-semibold text-orange-600">👨‍💻 About the Developer</h4>
+      <p class="text-sm leading-snug mt-1">
+        Hey! I'm Parth Dudhe — a passionate developer, ML enthusiast, and robotics tinkerer.<br>
+        I love building smart solutions that solve real-world problems.
+      </p>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="space-y-1">
+      <h4 class="text-base font-semibold text-orange-600">📬 Contact</h4>
+      <p class="text-sm">Email: <a href="mailto:parthdudhe06@gmail.com" class="text-orange-500 hover:underline">parthdudhe06@gmail.com</a></p>
+      <div class="flex space-x-3 mt-1">
+        <!-- GitHub Icon -->
+<a href="https://github.com/parthdude07" target="_blank" class="hover:text-black" aria-label="GitHub">
+  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+      d="M12 0.296997C5.373 0.296997 0 5.67 0 12.297C0 17.622 3.438 22.093 8.205 23.682C8.805 23.793 9.025 23.43 9.025 23.112C9.025 22.828 9.015 22.158 9.01 21.258C5.672 21.947 4.968 19.867 4.968 19.867C4.422 18.512 3.633 18.15 3.633 18.15C2.546 17.409 3.717 17.423 3.717 17.423C4.922 17.512 5.555 18.675 5.555 18.675C6.61 20.506 8.376 20.015 9.053 19.713C9.161 18.936 9.468 18.41 9.81 18.104C7.145 17.794 4.344 16.731 4.344 11.927C4.344 10.56 4.822 9.468 5.617 8.61C5.489 8.298 5.059 7.018 5.74 5.298C5.74 5.298 6.768 4.963 8.998 6.618C9.992 6.343 11.058 6.206 12.123 6.201C13.187 6.206 14.254 6.343 15.25 6.618C17.478 4.963 18.504 5.298 18.504 5.298C19.188 7.018 18.756 8.298 18.631 8.61C19.43 9.468 19.902 10.56 19.902 11.927C19.902 16.744 17.096 17.79 14.422 18.095C14.854 18.471 15.234 19.233 15.234 20.38C15.234 21.947 15.219 22.976 15.219 23.112C15.219 23.43 15.435 23.798 16.043 23.682C20.807 22.089 24 17.618 24 12.297C24 5.67 18.627 0.296997 12 0.296997Z" />
+  </svg>
+</a>
+
+<!-- LinkedIn Icon -->
+<a href="https://linkedin.com/in/parthdudhe" target="_blank" class="hover:text-blue-700" aria-label="LinkedIn">
+  <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+    <path d="M20.447 20.452H17.21V14.82C17.21 13.47 17.184 11.76 15.31 11.76C13.408 11.76 13.125 13.214 13.125 14.727V20.452H9.89V9.001H12.98V10.508H13.025C13.468 9.664 14.54 8.773 16.07 8.773C19.58 8.773 20.45 11.084 20.45 14.093V20.452H20.447ZM5.337 7.433C4.188 7.433 3.257 6.497 3.257 5.353C3.257 4.205 4.188 3.27 5.337 3.27C6.481 3.27 7.416 4.205 7.416 5.353C7.416 6.497 6.481 7.433 5.337 7.433ZM7.12 20.452H3.558V9.001H7.12V20.452ZM22.225 0H1.771C0.792 0 0 0.78 0 1.747V22.254C0 23.22 0.792 24 1.771 24H22.22C23.2 24 23.991 23.22 23.991 22.254V1.747C24 0.78 23.2 0 22.225 0Z" />
+  </svg>
+</a>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="text-center text-xs text-gray-500 mt-6">
+    &copy; 2025 CookWiseAI by Parth Dudhe. All rights reserved.
+  </div>
+</footer>
+
+</body>
+</html>
