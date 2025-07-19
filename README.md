@@ -64,6 +64,10 @@ pip install -r requirements.txt
 ```
 
 ### 4. Run the Flask app
+```bash
+#run once
+python model_trainer.py
+```
 
 ```bash
 python app.py
@@ -92,10 +96,11 @@ CookWiseAI/
 ├── templates/
 │   ├── index.html        # Input page UI
 │   └── results.html      # Output recommendation UI
-├── static/               # CSS/JS files
+├── static/defaul.jpg      # CSS/JS files
 ├── data/
 │   └── Cleaned_Indian_Food_Dataset.csv
 ├── requirements.txt
+|__ model_trainer.py
 └── README.md
 ```
 
