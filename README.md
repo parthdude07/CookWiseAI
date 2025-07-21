@@ -26,7 +26,7 @@ This is a smart **Recipe Recommendation Web App** built using **TF-IDF vectoriza
 - Cosine similarity is used to recommend similar recipes
 - 
 ### 3. Why KNN ?
--We chose KNN (k-Nearest Neighbors) for our recipe recommendation system because it's simple, effective, and interpretable. Since we’re comparing recipes based on ingredients, KNN works well with TF-IDF vectorization to find similar recipes using cosine similarity. It doesn't require model training, which makes it perfect for a static dataset and quick experimentation. Unlike collaborative filtering or deep learning models, KNN is lightweight, doesn't need user history, and is easy to implement — making it the most practical choice for this use case.
+- We chose KNN (k-Nearest Neighbors) for our recipe recommendation system because it's simple, effective, and interpretable. Since we’re comparing recipes based on ingredients, KNN works well with TF-IDF vectorization to find similar recipes using cosine similarity. It doesn't require model training, which makes it perfect for a static dataset and quick experimentation. Unlike collaborative filtering or deep learning models, KNN is lightweight, doesn't need user history, and is easy to implement — making it the most practical choice for this use case.
 - 
 ### 4. Soft Filtering (Post-processing)
 - Recommended results are filtered based on user’s optional preferences (Cuisine, Time, Protein level)
